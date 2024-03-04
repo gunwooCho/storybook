@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "storybook dev -p 6006",
+    "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_ce6a55a1e2e47f9"
+    "build": "npx chromatic --project-token=chpt_ce6a55a1e2e47f9"
   },
   "keywords": [],
   "author": "",
