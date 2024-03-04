@@ -1,3 +1,5 @@
+const OS = require('os');
+
 module.exports = {
   env: {
     browser: true,
@@ -22,7 +24,7 @@ module.exports = {
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     'import/no-extraneous-dependencies': 'warn',
     'import/prefer-default-export': 0, // export default 권장
-    'linebreak-style': ['error', require('os').EOL === '\r\n' ? 'windows' : 'unix'],
+    'linebreak-style': ['error', OS.EOL === '\r\n' ? 'windows' : 'unix'],
     'react/button-has-type': 'warn',
     'react/no-unescaped-entities': 'warn',
     'react/jsx-props-no-spreading': 'off',
