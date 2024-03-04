@@ -1,8 +1,8 @@
-import { Header } from './Header';
+import HelloWorld from '../components/whitesky0109/helloWorld';
 
 export default {
-  title: 'Example/JSTest',
-  component: Header,
+  title: 'whitesky0109/Hello world',
+  component: HelloWorld,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
@@ -11,12 +11,4 @@ export default {
   },
 };
 
-export const LoggedIn = {
-  args: {
-    user: {
-      name: 'Hanwha Vision',
-    },
-  },
-};
-
-export const LoggedOut = {};
+export const helloWorld = {};
