@@ -12,11 +12,11 @@ export default {
 };
 
 export const LoggedIn = {
-    args: {
-      user: {
-        name: 'Hanwha Vision',
-      },
+  args: {
+    user: {
+      name: 'Hanwha Vision',
     },
-  };
-  
-  export const LoggedOut = {};
+  },
+};
+
+export const LoggedOut = {};
