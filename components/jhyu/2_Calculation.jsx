@@ -1,36 +1,63 @@
 import React from 'react';
 
-class Calculation extends React.Component {
+class CalculationApp extends React.Component {
   constructor(props) {
     super(props);
-    this.num1 = React.createRef();
-    this.num2 = React.createRef();
-    this.result = React.createRef();
+    this.state = {
+      num1: '',
+      num2: '',
+      result: '',
+    };
   }
 
-  calculate = () => {
-    const num1 = Number(this.num1.current.value);
-    const num2 = Number(this.num2.current.value);
+  handleCalculate = () => {
+    const { num1, num2 } = this.state;
+
+    // 입력된 값이 정수인지 확인
+    const parsedNum1 = parseInt(num1, 10);
+    const parsedNum2 = parseInt(num2, 10);
+
+    if (!Number.isInteger(parsedNum1) || !Number.isInteger(parsedNum2)) {
+      this.setState({ result: '두 입력값 모두 정수여야 합니다.' });
+      return;
+    }
+
+    // 사칙연산 결과 생성 및 문자열로 변환
+    const sum = (parsedNum1 + parsedNum2).toString();
+    const difference = (parsedNum1 - parsedNum2).toString();
+    const product = (parsedNum1 * parsedNum2).toString();
+    const quotient = parsedNum2 !== 0 ? (Math.floor(parsedNum1 / parsedNum2)).toString() : '무한대';
 
     const results = `
-      ${num1} + ${num2} = ${num1 + num2}\n
-      ${num1} * ${num2} = ${num1 * num2}\n
-      ${num1} - ${num2} = ${num1 - num2}\n
-      ${num1} / ${num2} = ${num1 / num2}
+      ${parsedNum1} + ${parsedNum2} = ${sum}\n
+      ${parsedNum1} - ${parsedNum2} = ${difference}\n
+      ${parsedNum1} * ${parsedNum2} = ${product}\n
+      ${parsedNum1} / ${parsedNum2} = ${quotient}
     `;
-    this.result.current.textContent = results;
+
+    this.setState({ result: results });
   };
 
   render() {
+    const { num1, num2, result } = this.state;
+
     return (
       <div>
-        <input type="number" ref={this.num1} />
-        <input type="number" ref={this.num2} />
-        <button type="button" onClick={this.calculate}>클릭</button>
-        <pre ref={this.result} />
+        <input
+          type="text"
+          value={num1}
+          onChange={event => this.setState({ num1: event.target.value.replace(/[^0-9]/g, '') })}
+        />
+        <input
+          type="text"
+          value={num2}
+          onChange={event => this.setState({ num2: event.target.value.replace(/[^0-9]/g, '') })}
+        />
+        <button onClick={this.handleCalculate}>계산하기</button>
+        <pre>{result}</pre>
       </div>
     );
   }
 }
 
-export default Calculation;
+export default CalculationApp;
