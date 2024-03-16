@@ -17,7 +17,7 @@ class CalculationApp extends React.Component {
     const parsedNum1 = parseInt(num1, 10);
     const parsedNum2 = parseInt(num2, 10);
 
-    if (!Number.isInteger(parsedNum1) || !Number.isInteger(parsedNum2)) {
+    if (Number.isNaN(parsedNum1) || Number.isNaN(parsedNum2)) {
       this.setState({ result: '두 입력값 모두 정수여야 합니다.' });
       return;
     }
@@ -26,7 +26,7 @@ class CalculationApp extends React.Component {
     const sum = (parsedNum1 + parsedNum2).toString();
     const difference = (parsedNum1 - parsedNum2).toString();
     const product = (parsedNum1 * parsedNum2).toString();
-    const quotient = parsedNum2 !== 0 ? (Math.floor(parsedNum1 / parsedNum2)).toString() : '무한대';
+    const quotient = (parsedNum1 / parsedNum2).toString();
 
     const results = `
       ${parsedNum1} + ${parsedNum2} = ${sum}\n
@@ -46,14 +46,19 @@ class CalculationApp extends React.Component {
         <input
           type="text"
           value={num1}
-          onChange={event => this.setState({ num1: event.target.value.replace(/[^0-9]/g, '') })}
+          onChange={event => this.setState({ num1: event.target.value.replace(/[^0-9\-.]/g, '') })}
         />
         <input
           type="text"
           value={num2}
-          onChange={event => this.setState({ num2: event.target.value.replace(/[^0-9]/g, '') })}
+          onChange={event => this.setState({ num2: event.target.value.replace(/[^0-9\-.]/g, '') })}
         />
-        <button onClick={this.handleCalculate}>계산하기</button>
+        <button
+          type="button"
+          onClick={this.handleCalculate}
+        >
+          계산하기
+        </button>
         <pre>{result}</pre>
       </div>
     );
