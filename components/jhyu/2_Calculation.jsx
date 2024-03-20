@@ -10,6 +10,13 @@ class CalculationApp extends React.Component {
     };
   }
 
+  handleInputChange = (event, inputName) => {
+    const inputValue = event.target.value;
+    const sanitizedValue = inputValue.replace(/[^0-9-]/g, ''); // 숫자와 마이너스 기호 외의 문자 제거
+    const parsedValue = sanitizedValue.startsWith('-') ? `-${sanitizedValue.replace(/-/g, '')}` : sanitizedValue; // 마이너스 기호가 처음에 오도록 처리
+    this.setState({ [inputName]: parsedValue });
+  };
+
   handleCalculate = () => {
     const { num1, num2 } = this.state;
 
@@ -46,12 +53,12 @@ class CalculationApp extends React.Component {
         <input
           type="text"
           value={num1}
-          onChange={event => this.setState({ num1: event.target.value.replace(/[^0-9\-.]/g, '') })}
+          onChange={event => this.handleInputChange(event, 'num1')}
         />
         <input
           type="text"
           value={num2}
-          onChange={event => this.setState({ num2: event.target.value.replace(/[^0-9\-.]/g, '') })}
+          onChange={event => this.handleInputChange(event, 'num2')}
         />
         <button
           type="button"
