@@ -1,8 +1,8 @@
-import HelloWorld from '../components/jhyu/1_HelloWorld';
+import Calculation from '../components/jhyu/2_Calculation';
 
 export default {
-  title: 'jhyu/1_HelloWorld',
-  component: HelloWorld,
+  title: 'jhyu/2_Calculation',
+  component: Calculation,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
@@ -11,4 +11,4 @@ export default {
   },
 };
 
-export const helloWorld = {};
+export const calculation = {};
